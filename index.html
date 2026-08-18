@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://japolio-lfsm4e3rc-japnamwason-8368s-projects.vercel.app/src/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <script src="https://japolio-lfsm4e3rc-japnamwason-8368s-projects.vercel.app/src/image-slot.js"></script>
+  <style>
+    body { margin: 0; overflow: hidden; }
+    * { box-sizing: border-box; }
+    @keyframes drift { from { transform: translateX(-10vw); } to { transform: translateX(110vw); } }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+    @keyframes walk { 0% { transform: translateX(-140px); } 50% { transform: translateX(140px); } 100% { transform: translateX(-140px); } }
+    @keyframes bootBar { from { width: 0%; } to { width: 100%; } }
+  </style>
+</helmet>
+<div style="position:relative; width:100%; height:100vh; overflow:hidden; font-family:'Press Start 2P',monospace; background:linear-gradient(160deg, oklch(0.88 0.05 350) 0%, oklch(0.9 0.06 40) 45%, oklch(0.86 0.06 300) 100%);">
+  <div style="position:absolute; top:0; left:0; right:0; height:34px; background:oklch(0.97 0.01 90 / 0.95); display:flex; align-items:center; justify-content:space-between; padding:0 18px; font-size:10px; color:oklch(0.3 0.02 300); z-index:20; border-bottom:2px solid oklch(0.8 0.02 300);"><span>◆ JAPOLIO</span></div>
+  <div style="position:absolute; top:56px; left:0; right:0; bottom:120px; z-index:10; display:flex; flex-direction:column; align-items:flex-end; gap:20px; padding:20px; overflow-y:auto;">
+    <div style="display:flex; flex-wrap:wrap; justify-content:flex-end; gap:8px;">
+      <sc-for list="{{ projects }}" as="p" hint-placeholder-count="8">
+        <div onClick="{{ p.onOpen }}" style="display:flex; flex-direction:column; align-items:center; justify-content:flex-end; gap:6px; width:88px; height:96px; cursor:pointer; padding:8px; user-select:none;">
+          <div style="{{ p.iconOuterStyle }}"><div style="{{ p.iconStyle }}"></div></div>
+          <div style="font-size:7px; text-align:center; color:oklch(0.25 0.02 300); background:oklch(0.97 0.01 90 / 0.7); padding:2px 4px;">{{ p.shortTitle }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  <sc-for list="{{ openWindows }}" as="w" hint-placeholder-count="0">
+    <div style="{{ w.windowStyle }}">
+      <div onMouseDown="{{ w.onDragStart }}" style="height:26px; background:oklch(0.9 0.05 350); display:flex; align-items:center; padding:0 8px; gap:6px; cursor:move; border-bottom:2px solid oklch(0.3 0.02 300);">
+        <div onClick="{{ w.onClose }}" style="width:11px; height:11px; border-radius:50%; background:#ff5f57; cursor:pointer;"></div>
+        <div style="flex:1; text-align:center; font-size:8px; color:oklch(0.3 0.02 300);">{{ w.title }}</div>
+      </div>
+      <div style="flex:1; overflow:auto; background:oklch(0.98 0.01 90); padding:22px;">
+        <div style="font-size:12px; color:oklch(0.3 0.02 300); margin-bottom:14px;">{{ w.title }}</div>
+        <sc-if value="{{ w.isEmirates }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; gap:6px; height:150px; margin-bottom:14px;">
+            <image-slot id="emirates-img-1" src="uploads/emirates-poster-artwork.jpg" style="flex:1; height:100%;" shape="rect" placeholder="Poster"></image-slot>
+            <image-slot id="emirates-img-2" src="uploads/emirates-gameshow-still.jpg" style="flex:1; height:100%;" shape="rect" placeholder="Still"></image-slot>
+            <image-slot id="emirates-img-3" src="uploads/emirates-aircraft-retrofit.jpg" style="flex:1; height:100%;" shape="rect" placeholder="Aircraft"></image-slot>
+          </div>
+        </sc-if>
+        <sc-if value="{{ w.hasImage }}" hint-placeholder-val="{{ true }}">
+          <div style="width:100%; aspect-ratio:16/10; background:oklch(0.9 0.03 90); margin-bottom:16px; overflow:hidden;">
+            <image-slot id="{{ w.imgId }}" src="{{ w.src }}" style="width:100%; height:100%;" shape="rect" placeholder="{{ w.placeholder }}"></image-slot>
+          </div>
+        </sc-if>
+        <div style="font-family:monospace; font-size:11px; line-height:1.8; color:oklch(0.35 0.02 60); white-space:pre-line;">{{ w.description }}</div>
+        <sc-if value="{{ w.link }}" hint-placeholder-val="{{ false }}">
+          <a href="{{ w.link }}" target="_blank" rel="noopener" style="display:inline-block; margin-top:18px; font-size:9px; color:oklch(0.5 0.1 30);">VIEW PROJECT ↗</a>
+        </sc-if>
+      </div>
+    </div>
+  </sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { windows: [], zCounter: 10, dragId: null };
+  projectData = [
+    { id: 'emirates', title: 'DIY Emirates', shortTitle: 'DIY Emirates', kind: 'mega', description: 'A parody gameshow campaign poster for Emirates DIY Dubai.', isEmirates: true },
+    { id: 'marketing-portfolio', title: 'Marketing Portfolio', shortTitle: 'Marketing', kind: 'mag', src: 'uploads/marketing-portfolio-cover.jpg', placeholder: 'CAMPAIGN CONCEPTS', link: 'uploads/Marketing-Portfolio-Japnam-Wason.pdf', description: 'A collection of marketing campaign concepts spanning beauty, sport, fashion, travel and destination experiences — Sephora, Dubai Experience, Emirates, Nike x Dubai Mall, Lacoste x Save Our Species, Clocked Out, and Dubai Islands. Same approach every time: insight, idea, experience, touchpoints, impact.' },
+    { id: 'asva', title: 'Asva', shortTitle: 'Asva', kind: 'bookKind', src: 'https://mir-s3-cdn-cf.behance.net/projects/404/0d40db117627107.Y3JvcCwxMTU4LDkwNiwxMDYsMA.jpg', placeholder: 'BOARD', link: 'https://www.behance.net/gallery/117627107/Asva-Cultural-studies', description: 'Cultural studies mapping heritage motifs into contemporary silhouette.' },
+    { id: 'fabdesign', title: 'FabDesign 2020', shortTitle: 'FabDesign', kind: 'fab', src: 'https://mir-s3-cdn-cf.behance.net/projects/404/4f1dba115126597.Y3JvcCwyNTUwLDE5OTQsMCw2NTA.jpg', placeholder: 'COVER', link: 'https://www.behance.net/gallery/115126597/FabDesign2020', description: 'An exploration of resin as a material.' },
+    { id: 'tasva', title: 'Tasva', shortTitle: 'Tasva', kind: 'shirtKind', src: 'https://mir-s3-cdn-cf.behance.net/projects/404/06a4ca146297781.Y3JvcCwxMzgwLDEwODAsMjcwLDA.jpg', placeholder: 'COVER', link: 'https://www.behance.net/gallery/146297781/Tasva', description: 'Menswear collection development with TASVA.' },
+    { id: 'drawing', title: 'Drawing For Design', shortTitle: 'Drawing', kind: 'pencilKind', src: 'https://mir-s3-cdn-cf.behance.net/projects/404/b4e31e89077485.Y3JvcCwxMjAwLDkzOCwwLDMyOQ.jpg', placeholder: 'COVER', link: 'https://www.behance.net/gallery/89077485/Drawing-For-Design', description: 'Fashion illustration studies in line, form and figure.' }
+  ];
+  palettes = { folderMega:{f:'#f5b8cf',d:'#dd93b3',a:'#fff2c2'}, folderBook:{f:'#b8d9f5',d:'#93b8dd',a:'#fff'}, folderFabric:{f:'#ffe4a3',d:'#e0bb6a',a:'#f2c94c'}, folderMagnify:{f:'#c9b8f5',d:'#a693dd',a:'#fff'}, folderShirt:{f:'#b8f5d9',d:'#8adcb3',a:'#7fb6d9'}, folderPencil:{f:'#f5d3b8',d:'#dcae83',a:'#4a3b3b'} };
+  icons = { folderHeart:['.ff...','ff.a.f','fa.a.f','f.a..f','ffffff','dddddd'], folderBook:['.ff...','ff.a.f','fa.a.f','fa.a.f','ffffff','dddddd'], folder:['.ff...','ffffff','ffffff','ffffff','dddddd'], folderMag:['.ff...','ffffff','f.aa.f','f.aa.f','ffffff','dddddd'], folderShirt:['.ff...','ff.a.f','faaaaf','f.a..f','ffffff','dddddd'], folderPencil:['.ff...','ff...f','f..a.f','f.a..f','ffffff','dddddd'] };
+  pixelArt(rows, palette, px) { const s=[]; rows.forEach((row,y)=>{[...row].forEach((ch,x)=>{if(ch!=='.'&&ch!==' ')s.push(`${x*px}px ${y*px}px 0 ${palette[ch]||'#000'}`);});}); const w=Math.max(...rows.map(r=>r.length))*px, h=rows.length*px; return { style:`width:${px}px;height:${px}px;box-shadow:${s.join(',')};`, outer:`position:relative;width:${w}px;height:${h}px;` }; }
+  openWindow(id,data){ this.setState(s=>{ if(s.windows.some(w=>w.id===id)){const nz=s.zCounter+1;return{windows:s.windows.map(w=>w.id===id?{...w,z:nz}:w),zCounter:nz};} const nz=s.zCounter+1,off=s.windows.length*24; return {windows:[...s.windows,{id,x:260+off,y:90+off,z:nz,...data}],zCounter:nz}; }); }
+  closeWindow(id){ this.setState(s=>({windows:s.windows.filter(w=>w.id!==id)})); }
+  componentDidMount(){ this.mv=(e)=>{ if(this.state.dragId==null)return; this.setState(s=>({windows:s.windows.map(w=>w.id===s.dragId?{...w,x:this.ox+(e.clientX-this.sx),y:Math.max(34,this.oy+(e.clientY-this.sy))}:w)})); }; this.up=()=>{ if(this.state.dragId!=null)this.setState({dragId:null}); }; window.addEventListener('mousemove',this.mv); window.addEventListener('mouseup',this.up); }
+  componentWillUnmount(){ window.removeEventListener('mousemove',this.mv); window.removeEventListener('mouseup',this.up); }
+  startDrag(id,e){ const w=this.state.windows.find(w=>w.id===id); if(!w)return; this.sx=e.clientX;this.sy=e.clientY;this.ox=w.x;this.oy=w.y; const nz=this.state.zCounter+1; this.setState({dragId:id,zCounter:nz,windows:this.state.windows.map(win=>win.id===id?{...win,z:nz}:win)}); }
+  renderVals(){
+    const kindMap={ mega:{icon:'folderHeart',palette:'folderMega'}, bookKind:{icon:'folderBook',palette:'folderBook'}, fab:{icon:'folder',palette:'folderFabric'}, mag:{icon:'folderMag',palette:'folderMagnify'}, shirtKind:{icon:'folderShirt',palette:'folderShirt'}, pencilKind:{icon:'folderPencil',palette:'folderPencil'} };
+    const projects=this.projectData.map(p=>{ const m=kindMap[p.kind]||{icon:'folder',palette:'folderFabric'}; const art=this.pixelArt(this.icons[m.icon],this.palettes[m.palette],7); return {...p,iconStyle:art.style,iconOuterStyle:art.outer,onOpen:()=>this.openWindow(p.id,{...p,imgId:`win-${p.id}`,isEmirates:p.id==='emirates',hasImage:p.id!=='emirates'})}; });
+    const openWindows=this.state.windows.map(w=>({ ...w, hasImage:w.hasImage!==false&&!w.isEmirates, windowStyle:`position:absolute;left:${w.x}px;top:${w.y}px;width:420px;height:480px;display:flex;flex-direction:column;background:oklch(0.98 0.01 90);border:2px solid oklch(0.3 0.02 300);box-shadow:6px 6px 0 oklch(0.3 0.02 300 / 0.35);z-index:${w.z};`, onDragStart:(e)=>this.startDrag(w.id,e), onClose:()=>this.closeWindow(w.id) }));
+    return { projects, openWindows };
+  }
+}
+</script>
+</body>
+</html>
