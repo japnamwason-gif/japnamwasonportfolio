@@ -3,25 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://japolio-lfsm4e3rc-japnamwason-8368s-projects.vercel.app/src/support.js"></script>
+<script src="./support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <script src="https://japolio-lfsm4e3rc-japnamwason-8368s-projects.vercel.app/src/image-slot.js"></script>
-  <meta name="ext-resource-dependency" content="https://japolio-lfsm4e3rc-japnamwason-8368s-projects.vercel.app/uploads/Screenshot 2026-07-21 at 23.11.15.png">
-  <meta name="ext-resource-dependency" content="https://japolio-lfsm4e3rc-japnamwason-8368s-projects.vercel.app/uploads/Screenshot 2026-07-21 at 23.08.14.png">
-  <meta name="ext-resource-dependency" content="https://japolio-lfsm4e3rc-japnamwason-8368s-projects.vercel.app/uploads/Screenshot 2026-07-21 at 23.09.13.png">
-  <meta name="ext-resource-dependency" content="https://japolio-lfsm4e3rc-japnamwason-8368s-projects.vercel.app/uploads/Screenshot 2026-07-24 at 00.18.06.png">
-  <meta name="ext-resource-dependency" content="https://japolio-lfsm4e3rc-japnamwason-8368s-projects.vercel.app/uploads/Screenshot 2026-07-24 at 00.18.16.png">
-  <meta name="ext-resource-dependency" content="https://japolio-lfsm4e3rc-japnamwason-8368s-projects.vercel.app/uploads/Screenshot 2026-07-24 at 00.18.24.png">
-  <meta name="ext-resource-dependency" content="https://japolio-lfsm4e3rc-japnamwason-8368s-projects.vercel.app/uploads/Screenshot 2026-07-24 at 00.18.34.png">
-  <meta name="ext-resource-dependency" content="https://japolio-lfsm4e3rc-japnamwason-8368s-projects.vercel.app/uploads/Screenshot 2026-07-24 at 00.18.41.png">
-  <meta name="ext-resource-dependency" content="https://japolio-lfsm4e3rc-japnamwason-8368s-projects.vercel.app/uploads/Screenshot 2026-07-24 at 00.18.49.png">
-  <meta name="ext-resource-dependency" content="https://japolio-lfsm4e3rc-japnamwason-8368s-projects.vercel.app/uploads/Screenshot 2026-07-24 at 00.19.00.png">
-  <meta name="ext-resource-dependency" content="https://japolio-lfsm4e3rc-japnamwason-8368s-projects.vercel.app/uploads/Poster - DIY-2.pdf">
+  <script src="./image-slot.js"></script>
+  <meta name="ext-resource-dependency" content="uploads/Screenshot 2026-07-21 at 23.11.15.jpg">
+  <meta name="ext-resource-dependency" content="uploads/Screenshot 2026-07-21 at 23.08.14.jpg">
+  <meta name="ext-resource-dependency" content="uploads/Screenshot 2026-07-21 at 23.09.13.jpg">
+  <meta name="ext-resource-dependency" content="uploads/Screenshot 2026-07-24 at 00.18.06.jpg">
+  <meta name="ext-resource-dependency" content="uploads/Screenshot 2026-07-24 at 00.18.16.jpg">
+  <meta name="ext-resource-dependency" content="uploads/Screenshot 2026-07-24 at 00.18.24.jpg">
+  <meta name="ext-resource-dependency" content="uploads/Screenshot 2026-07-24 at 00.18.34.jpg">
+  <meta name="ext-resource-dependency" content="uploads/Screenshot 2026-07-24 at 00.18.41.jpg">
+  <meta name="ext-resource-dependency" content="uploads/Screenshot 2026-07-24 at 00.18.49.jpg">
+  <meta name="ext-resource-dependency" content="uploads/Screenshot 2026-07-24 at 00.19.00.jpg">
+  <meta name="ext-resource-dependency" content="uploads/Poster - DIY-2.pdf">
   <style>
     body { margin: 0; overflow: hidden; }
     * { box-sizing: border-box; }
@@ -274,7 +274,7 @@ class Component extends DCLogic {
     { id: 'location', title: 'Location', shortTitle: 'Location', kind: 'locationPin', isLocation: true, ...{} },
     { id: 'experience', title: 'Experience', shortTitle: 'Experience', kind: 'bookKind', isExperience: true, ...{} },
     { id: 'skills', title: 'Skills', shortTitle: 'Skills', kind: 'star', isSkills: true, ...{} },
-    { id: 'emirates', title: 'DIY Emirates', shortTitle: 'DIY Emirates', kind: 'mega', src: 'https://japolio-lfsm4e3rc-japnamwason-8368s-projects.vercel.app/uploads/Poster - DIY-2.pdf', placeholder: 'CAMPAIGN ARTWORK', link: 'https://japolio-lfsm4e3rc-japnamwason-8368s-projects.vercel.app/uploads/Poster - DIY-2.pdf', description: 'A parody gameshow campaign poster for Emirates\' "DIY Dubai" — a $5 billion in-house retrofit of 219 aircraft, reimagined as a home renovation reality show.' },
+    { id: 'emirates', title: 'DIY Emirates', shortTitle: 'DIY Emirates', kind: 'mega', src: 'uploads/Poster - DIY-2.pdf', placeholder: 'CAMPAIGN ARTWORK', link: 'uploads/Poster - DIY-2.pdf', description: 'A parody gameshow campaign poster for Emirates\' "DIY Dubai" — a $5 billion in-house retrofit of 219 aircraft, reimagined as a home renovation reality show.' },
     { id: 'marketing-portfolio', title: 'Marketing Portfolio', shortTitle: 'Marketing', kind: 'mag', src: 'uploads/marketing-portfolio-cover.jpg', placeholder: 'CAMPAIGN CONCEPTS', link: 'uploads/Marketing-Portfolio-Japnam-Wason.pdf', description: 'A collection of marketing campaign concepts spanning beauty, sport, fashion, travel and destination experiences — Sephora, Dubai Experience, Emirates, Nike x Dubai Mall, Lacoste x Save Our Species, Clocked Out, and Dubai Islands. Same approach every time: insight, idea, experience, touchpoints, impact.' },
     { id: 'asva', title: 'Asva — Cultural Studies', shortTitle: 'Asva', kind: 'bookKind', src: 'https://mir-s3-cdn-cf.behance.net/projects/404/0d40db117627107.Y3JvcCwxMTU4LDkwNiwxMDYsMA.jpg', placeholder: 'MOOD & CONCEPT BOARD', link: 'https://www.behance.net/gallery/117627107/Asva-Cultural-studies', description: 'Cultural studies mapping heritage motifs into contemporary silhouette and concept design.' },
     { id: 'fabdesign', title: 'FabDesign 2020', shortTitle: 'FabDesign', kind: 'fab', src: 'https://mir-s3-cdn-cf.behance.net/projects/404/4f1dba115126597.Y3JvcCwyNTUwLDE5OTQsMCw2NTA.jpg', placeholder: 'TEXTILE COVER', link: 'https://www.behance.net/gallery/115126597/FabDesign2020', description: 'An exploration of resin as a material — testing how it casts, sets and holds texture, and translating that into decor objects and surfaces.' },
@@ -315,19 +315,17 @@ class Component extends DCLogic {
   girlSprite = ['.bbb...bbb.','.bbb...bbb.','.ccccccccc.','ppppppppppp','bbbkbbbkbbb','bbbbwwwbbbb','bbbbwkwbbbb','.bbbbbbbbb.','bbbbbbbbbbb','bbwwwwwwwbb','bbw.h.h.wbb','bbwhhhhhwbb','bbw.hhh.wbb','bbw..h..wbb','..bbb.bbb..'];
 
   sketchData = [
-    { placeholder: 'Project — Business Idea', src: 'https://mir-s3-cdn-cf.behance.net/projects/404/b754b0155185935.Y3JvcCw5MTAsNzEyLDEwMyww.jpg', description: 'Colour and mood exploration for a collection, testing palettes before fabric sourcing.' },
-    { placeholder: 'Project — Feathered Coat', src: 'https://japolio-lfsm4e3rc-japnamwason-8368s-projects.vercel.app/uploads/Screenshot 2026-07-21 at 23.08.14.png', description: 'Concept sketch for a feathered outerwear piece, focused on texture and silhouette.' },
-    { placeholder: 'Project — Tiered Ruffle Skirt', src: 'https://japolio-lfsm4e3rc-japnamwason-8368s-projects.vercel.app/uploads/Screenshot 2026-07-21 at 23.09.13.png', description: 'Design development for a tiered ruffle skirt, exploring volume and layering.', link: 'https://www.instagram.com/japnamwasonn/' }
+    { placeholder: 'Project — Business Idea', src: 'https://mir-s3-cdn-cf.behance.net/projects/404/b754b0155185935.Y3JvcCw5MTAsNzEyLDEwMyww.jpg', description: 'Colour and mood exploration for a collection, testing palettes before fabric sourcing.' }
   ];
 
   sketchbookData = [
-    { placeholder: 'Sparkle Wrap Gown', src: 'https://japolio-lfsm4e3rc-japnamwason-8368s-projects.vercel.app/uploads/Screenshot 2026-07-24 at 00.18.06.png', description: 'Digital illustration — draped black wrap gown, rendered against a sparkling red backdrop.' },
-    { placeholder: 'Faux Fur Coat', src: 'https://japolio-lfsm4e3rc-japnamwason-8368s-projects.vercel.app/uploads/Screenshot 2026-07-24 at 00.18.16.png', description: 'Digital illustration — oversized faux fur coat over a printed maxi skirt and knit crop top.' },
-    { placeholder: 'Ruffle Portrait Study', src: 'https://japolio-lfsm4e3rc-japnamwason-8368s-projects.vercel.app/uploads/Screenshot 2026-07-24 at 00.18.24.png', description: 'Digital illustration — watercolour portrait study with an oversized ruffled sleeve.' },
-    { placeholder: 'Pleated Ruffle Dress', src: 'https://japolio-lfsm4e3rc-japnamwason-8368s-projects.vercel.app/uploads/Screenshot 2026-07-24 at 00.18.34.png', description: 'Digital illustration — pleated mini dress with a sculptural ruffled shoulder.' },
-    { placeholder: 'Lace Tights Look', src: 'https://japolio-lfsm4e3rc-japnamwason-8368s-projects.vercel.app/uploads/Screenshot 2026-07-24 at 00.18.41.png', description: 'Digital illustration — corseted mini dress styled with patterned lace tights.' },
-    { placeholder: 'Glitter Trim Gown', src: 'https://japolio-lfsm4e3rc-japnamwason-8368s-projects.vercel.app/uploads/Screenshot 2026-07-24 at 00.18.49.png', description: 'Digital illustration — draped gown with a glittering ribbon trim, hair caught in motion.' },
-    { placeholder: 'Denim Street Style', src: 'https://japolio-lfsm4e3rc-japnamwason-8368s-projects.vercel.app/uploads/Screenshot 2026-07-24 at 00.19.00.png', description: 'Digital illustration — casual street style look in denim and a puff-sleeve blouse.' }
+    { placeholder: 'Sparkle Wrap Gown', src: 'uploads/Screenshot 2026-07-24 at 00.18.06.jpg', description: 'Digital illustration — draped black wrap gown, rendered against a sparkling red backdrop.' },
+    { placeholder: 'Faux Fur Coat', src: 'uploads/Screenshot 2026-07-24 at 00.18.16.jpg', description: 'Digital illustration — oversized faux fur coat over a printed maxi skirt and knit crop top.' },
+    { placeholder: 'Ruffle Portrait Study', src: 'uploads/Screenshot 2026-07-24 at 00.18.24.jpg', description: 'Digital illustration — watercolour portrait study with an oversized ruffled sleeve.' },
+    { placeholder: 'Pleated Ruffle Dress', src: 'uploads/Screenshot 2026-07-24 at 00.18.34.jpg', description: 'Digital illustration — pleated mini dress with a sculptural ruffled shoulder.' },
+    { placeholder: 'Lace Tights Look', src: 'uploads/Screenshot 2026-07-24 at 00.18.41.jpg', description: 'Digital illustration — corseted mini dress styled with patterned lace tights.' },
+    { placeholder: 'Glitter Trim Gown', src: 'uploads/Screenshot 2026-07-24 at 00.18.49.jpg', description: 'Digital illustration — draped gown with a glittering ribbon trim, hair caught in motion.' },
+    { placeholder: 'Denim Street Style', src: 'uploads/Screenshot 2026-07-24 at 00.19.00.jpg', description: 'Digital illustration — casual street style look in denim and a puff-sleeve blouse.' }
   ];
 
   componentDidMount() {
@@ -462,8 +460,8 @@ class Component extends DCLogic {
     const girlArt = this.pixelArt(this.girlSprite, this.palettes.girl, 6);
 
     const dockItems = [
-      { glyph: '👤', label: 'About', bubbleColor: 'oklch(0.88 0.07 350)', onOpen: () => this.openWindow('about', { title: 'About Japnam', src: 'https://japolio-lfsm4e3rc-japnamwason-8368s-projects.vercel.app/uploads/Screenshot 2026-07-21 at 23.11.15.png', placeholder: 'PORTRAIT', description: 'Fashion designer & marketer working across couture, retail and campaign design. MSc Business, Management & Marketing; 3+ years across luxury fashion and brand storytelling.', link: '', imgId: 'win-about', isRound: true }) },
-      { glyph: '✉', label: 'Connect', bubbleColor: 'oklch(0.88 0.06 300)', onOpen: () => this.openWindow('contact', { title: "Let's Connect", src: 'https://japolio-lfsm4e3rc-japnamwason-8368s-projects.vercel.app/uploads/Screenshot 2026-07-21 at 23.11.15.png', placeholder: 'PORTRAIT', description: 'japnamwason@gmail.com\n+91 98100 33975\nInstagram — @japnamwasonn\nBehance — /japnamwason\nDelhi, India', link: 'mailto:japnamwason@gmail.com', imgId: 'win-contact', isRound: true }) },
+      { glyph: '👤', label: 'About', bubbleColor: 'oklch(0.88 0.07 350)', onOpen: () => this.openWindow('about', { title: 'About Japnam', src: 'uploads/Screenshot 2026-07-21 at 23.11.15.jpg', placeholder: 'PORTRAIT', description: 'Fashion designer & marketer working across couture, retail and campaign design. MSc Business, Management & Marketing; 3+ years across luxury fashion and brand storytelling.', link: '', imgId: 'win-about', isRound: true }) },
+      { glyph: '✉', label: 'Connect', bubbleColor: 'oklch(0.88 0.06 300)', onOpen: () => this.openWindow('contact', { title: "Let's Connect", src: 'uploads/Screenshot 2026-07-21 at 23.11.15.jpg', placeholder: 'PORTRAIT', description: 'japnamwason@gmail.com\n+91 99998 22153\nInstagram — @japnamwasonn\nBehance — /japnamwason\nDelhi, India', link: 'mailto:japnamwason@gmail.com', imgId: 'win-contact', isRound: true }) },
       { glyph: '✏', label: 'Sketches', bubbleColor: 'oklch(0.88 0.06 200)', onOpen: () => this.openWindow('sketchbook', { title: 'My Sketchbook', isSketchbook: true, hasImage: false, link: 'https://www.instagram.com/japnamwasonn/' }) }
     ];
 
