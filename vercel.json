@@ -1,1 +1,1 @@
-{"cleanUrls":true,"trailingSlash":false,"buildCommand":""}
+{"cleanUrls":true,"trailingSlash":false,"buildCommand":"","rewrites":[{"source":"/","destination":"/uploads/index.html"}]}
