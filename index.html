@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <script src="./image-slot.js"></script>
+  <meta name="ext-resource-dependency" content="uploads/Screenshot 2026-07-21 at 23.11.15.jpg">
+  <meta name="ext-resource-dependency" content="uploads/Screenshot 2026-07-21 at 23.08.14.jpg">
+  <meta name="ext-resource-dependency" content="uploads/Screenshot 2026-07-21 at 23.09.13.jpg">
+  <meta name="ext-resource-dependency" content="uploads/Screenshot 2026-07-24 at 00.18.06.jpg">
+  <meta name="ext-resource-dependency" content="uploads/Screenshot 2026-07-24 at 00.18.16.jpg">
+  <meta name="ext-resource-dependency" content="uploads/Screenshot 2026-07-24 at 00.18.24.jpg">
+  <meta name="ext-resource-dependency" content="uploads/Screenshot 2026-07-24 at 00.18.34.jpg">
+  <meta name="ext-resource-dependency" content="uploads/Screenshot 2026-07-24 at 00.18.41.jpg">
+  <meta name="ext-resource-dependency" content="uploads/Screenshot 2026-07-24 at 00.18.49.jpg">
+  <meta name="ext-resource-dependency" content="uploads/Screenshot 2026-07-24 at 00.19.00.jpg">
+  <meta name="ext-resource-dependency" content="uploads/Poster - DIY-2.pdf">
+  <style>
+    body { margin: 0; overflow: hidden; }
+    * { box-sizing: border-box; }
+    @keyframes drift { from { transform: translateX(-10vw); } to { transform: translateX(110vw); } }
+    @keyframes blink { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+    @keyframes walk { 0% { transform: translateX(-140px); } 50% { transform: translateX(140px); } 100% { transform: translateX(-140px); } }
+    @keyframes bootBar { from { width: 0%; } to { width: 100%; } }
+  </style>
+</helmet>
+
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 140"><rect width="200" height="140" fill="#f2c14e"/><text x="100" y="82" font-size="40" text-anchor="middle" font-family="monospace" font-weight="bold" fill="#4a3b3b">JP</text></svg>
+</template>
+
+<div onMouseMove="{{ onMouseMove }}" style="position:relative; width:100%; height:100vh; overflow:hidden; font-family:'Press Start 2P',monospace; cursor:none; background:linear-gradient(160deg, oklch(0.88 0.05 350) 0%, oklch(0.9 0.06 40) 45%, oklch(0.86 0.06 300) 100%);">
+
+  <div style="{{ cursorStyle }}"></div>
+
+  <sc-if value="{{ !booted }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute; inset:0; z-index:500; background:oklch(0.2 0.02 300); color:oklch(0.95 0.02 90); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:28px;">
+      <div style="font-size:22px; letter-spacing:2px; color:oklch(0.85 0.08 350);">JAPOLIO OS</div>
+      <div style="width:280px; height:16px; border:3px solid oklch(0.85 0.08 350); padding:2px;">
+        <div style="height:100%; background:oklch(0.75 0.1 30); animation:bootBar 2.2s ease forwards;"></div>
+      </div>
+      <div style="font-size:9px; color:oklch(0.7 0.03 300);">loading creative assets...</div>
+    </div>
+  </sc-if>
+
+  <sc-for list="{{ clouds }}" as="c" hint-placeholder-count="4">
+    <div style="{{ c.style }}"></div>
+  </sc-for>
+
+  <div style="position:absolute; top:0; left:0; right:0; height:34px; background:oklch(0.97 0.01 90 / 0.95); display:flex; align-items:center; justify-content:space-between; padding:0 18px; font-size:10px; color:oklch(0.3 0.02 300); z-index:20; border-bottom:2px solid oklch(0.8 0.02 300);">
+    <div style="display:flex; align-items:center; gap:16px;">
+      <span>◆ JAPOLIO</span>
+    </div>
+    <div>{{ clockLabel }}</div>
+  </div>
+
+  <div style="position:absolute; top:190px; left:38px; transform:rotate(-4deg); background:oklch(0.92 0.08 95); width:160px; padding:16px 14px; font-size:9px; line-height:1.7; color:oklch(0.35 0.03 60); box-shadow:3px 4px 0 oklch(0.4 0.02 60 / 0.25); z-index:15;">
+    design & marketing<br>professional
+  </div>
+
+  <div style="position:absolute; top:56px; left:0; right:0; bottom:120px; z-index:10; display:flex; flex-direction:column; align-items:flex-end; gap:20px; padding:20px; overflow-y:auto;">
+    <div style="display:flex; flex-wrap:wrap; justify-content:flex-end; gap:8px;">
+      <sc-for list="{{ projects }}" as="p" hint-placeholder-count="8">
+        <div onClick="{{ p.onOpenWithNet }}" style="display:flex; flex-direction:column; align-items:center; justify-content:flex-end; gap:6px; width:88px; height:96px; cursor:none; padding:8px; user-select:none;">
+          <div style="{{ p.iconOuterStyle }}"><div style="{{ p.iconStyle }}"></div></div>
+          <div style="font-size:7px; text-align:center; color:oklch(0.25 0.02 300); background:oklch(0.97 0.01 90 / 0.7); padding:2px 4px;">{{ p.shortTitle }}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display:flex; flex-wrap:wrap; justify-content:flex-end; gap:8px;">
+      <sc-for list="{{ illustrationFolders }}" as="f" hint-placeholder-count="8">
+        <div onClick="{{ f.onOpen }}" style="display:flex; flex-direction:column; align-items:center; justify-content:flex-end; gap:6px; width:88px; height:80px; cursor:none; padding:8px; user-select:none;">
+          <div style="{{ f.iconOuterStyle }}"><div style="{{ f.iconStyle }}"></div></div>
+          <div style="font-size:7px; text-align:center; color:oklch(0.25 0.02 300); background:oklch(0.97 0.01 90 / 0.7); padding:2px 4px;">{{ f.label }}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display:flex; flex-wrap:wrap; justify-content:flex-end; gap:8px;">
+      <div onClick="{{ onOpenSketchbook }}" style="display:flex; flex-direction:column; align-items:center; justify-content:flex-end; gap:6px; width:88px; height:80px; cursor:none; padding:8px; user-select:none;">
+        <div style="{{ sketchbookIconOuterStyle }}"><div style="{{ sketchbookIconStyle }}"></div></div>
+        <div style="font-size:7px; text-align:center; color:oklch(0.25 0.02 300); background:oklch(0.97 0.01 90 / 0.7); padding:2px 4px;">My Sketchbook</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="{{ characterWrapStyle }}">
+    <div style="position:relative; width:66px;">
+      <div style="position:absolute; bottom:-14px; left:50%; transform:translateX(-50%); width:112px; height:36px; background:oklch(0.98 0.005 90); border-radius:999px; box-shadow:34px -8px 0 -6px oklch(0.98 0.005 90), -34px 5px 0 -8px oklch(0.98 0.005 90); z-index:1;"></div>
+      <div style="position:relative; z-index:2; animation:bob 1.2s ease-in-out infinite;">
+        <div style="{{ girlOuterStyle }}"><div style="{{ girlStyle }}"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <sc-if value="{{ netThrow }}" hint-placeholder-val="{{ false }}">
+    <div style="{{ netThrowStyle }}"></div>
+  </sc-if>
+
+  <div style="position:absolute; bottom:14px; left:50%; transform:translateX(-50%); display:flex; gap:16px; background:oklch(0.97 0.01 90 / 0.95); border:2px solid oklch(0.8 0.02 300); border-radius:22px; padding:12px 20px; z-index:20;">
+    <sc-for list="{{ dockItems }}" as="d" hint-placeholder-count="4">
+      <div onClick="{{ d.onOpen }}" style="display:flex; flex-direction:column; align-items:center; gap:4px; cursor:none;">
+        <div style="width:36px; height:36px; border-radius:50%; background:{{ d.bubbleColor }}; display:flex; align-items:center; justify-content:center; font-size:16px; border:2px solid oklch(0.3 0.02 300 / 0.5); transition:transform 0.15s ease; box-shadow:2px 2px 0 oklch(0.3 0.02 300 / 0.2);" style-hover="transform:translateY(-5px) scale(1.08);">{{ d.glyph }}</div>
+        <div style="font-size:6px; color:oklch(0.35 0.02 300);">{{ d.label }}</div>
+      </div>
+    </sc-for>
+  </div>
+
+  <sc-for list="{{ openWindows }}" as="w" hint-placeholder-count="0">
+    <div style="{{ w.windowStyle }}">
+      <div onMouseDown="{{ w.onDragStart }}" style="height:26px; background:oklch(0.9 0.05 350); display:flex; align-items:center; padding:0 8px; gap:6px; cursor:none; border-bottom:2px solid oklch(0.3 0.02 300);">
+        <div onClick="{{ w.onClose }}" style="width:11px; height:11px; border-radius:50%; background:#ff5f57; border:1px solid oklch(0.3 0 0 / 0.3); cursor:none;"></div>
+        <div style="width:11px; height:11px; border-radius:50%; background:#febc2e; border:1px solid oklch(0.3 0 0 / 0.3);"></div>
+        <div style="width:11px; height:11px; border-radius:50%; background:#28c840; border:1px solid oklch(0.3 0 0 / 0.3);"></div>
+        <div style="flex:1; text-align:center; font-size:8px; color:oklch(0.3 0.02 300);">{{ w.title }}</div>
+      </div>
+      <div style="flex:1; overflow:auto; background:oklch(0.98 0.01 90); padding:22px; font-family:'Press Start 2P',monospace;">
+        <sc-if value="{{ w.showHeading }}" hint-placeholder-val="{{ true }}">
+          <div style="font-size:12px; color:oklch(0.3 0.02 300); margin-bottom:14px; line-height:1.6;">{{ w.title }}</div>
+        </sc-if>
+        <sc-if value="{{ w.isSketches }}" hint-placeholder-val="{{ false }}">
+          <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:10px;">
+            <sc-for list="{{ sketches }}" as="s" hint-placeholder-count="8">
+              <div style="width:100%; aspect-ratio:1; background:oklch(0.9 0.03 90); overflow:hidden;">
+                <image-slot id="{{ s.id }}" src="{{ s.src }}" style="width:100%; height:100%;" shape="rect" placeholder="{{ s.placeholder }}"></image-slot>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ w.isSketchbook }}" hint-placeholder-val="{{ false }}">
+          <div style="background:oklch(0.96 0.04 90); border:2px solid oklch(0.3 0.02 300); transform:rotate(-1deg); box-shadow:4px 4px 0 oklch(0.3 0.02 300 / 0.2); padding:16px; background-image:repeating-linear-gradient(0deg, transparent, transparent 26px, oklch(0.85 0.03 90) 27px);">
+            <div style="width:100%; aspect-ratio:4/3; background:oklch(0.9 0.03 90); overflow:hidden; margin-bottom:12px;">
+              <image-slot id="{{ sketchbookPage.id }}" src="{{ sketchbookPage.src }}" style="width:100%; height:100%;" shape="rect" placeholder="{{ sketchbookPage.placeholder }}"></image-slot>
+            </div>
+            <div style="font-family:'Work Sans',monospace; font-size:11px; color:oklch(0.35 0.02 60); margin-bottom:14px;">{{ sketchbookPage.placeholder }}</div>
+            <div style="display:flex; align-items:center; justify-content:space-between;">
+              <div onClick="{{ onPrevSketchPage }}" style="cursor:none; font-size:14px; padding:4px 10px; background:oklch(0.9 0.05 350); border:2px solid oklch(0.3 0.02 300);">&#9664;</div>
+              <div style="font-size:9px; color:oklch(0.4 0.02 60);">{{ sketchbookPage.pageLabel }}</div>
+              <div onClick="{{ onNextSketchPage }}" style="cursor:none; font-size:14px; padding:4px 10px; background:oklch(0.9 0.05 350); border:2px solid oklch(0.3 0.02 300);">&#9654;</div>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ w.showPlainImage }}" hint-placeholder-val="{{ true }}">
+          <div style="width:100%; aspect-ratio:16/10; background:oklch(0.9 0.03 90); margin-bottom:16px; overflow:hidden;">
+            <image-slot id="{{ w.imgId }}" src="{{ w.src }}" style="width:100%; height:100%;" shape="rect" placeholder="{{ w.placeholder }}"></image-slot>
+          </div>
+        </sc-if>
+        <sc-if value="{{ w.showLinkedImage }}" hint-placeholder-val="{{ false }}">
+          <a href="{{ w.link }}" target="_blank" rel="noopener" style="display:block; width:100%; aspect-ratio:16/10; background:oklch(0.9 0.03 90); margin-bottom:16px; overflow:hidden; cursor:none;">
+            <image-slot id="{{ w.imgId }}" src="{{ w.src }}" style="width:100%; height:100%;" shape="rect" placeholder="{{ w.placeholder }}"></image-slot>
+          </a>
+        </sc-if>
+        <sc-if value="{{ w.showRoundImage }}" hint-placeholder-val="{{ false }}">
+          <div style="width:160px; height:160px; border-radius:50%; background:oklch(0.9 0.03 90); margin:0 auto 16px; overflow:hidden; border:3px solid oklch(0.3 0.02 300);">
+            <image-slot id="{{ w.imgId }}" src="{{ w.src }}" style="width:100%; height:100%;" shape="circle" placeholder="{{ w.placeholder }}"></image-slot>
+          </div>
+        </sc-if>
+        <sc-if value="{{ w.isEmirates }}" hint-placeholder-val="{{ false }}">
+          <div style="background:oklch(0.96 0.04 90); border:2px solid oklch(0.3 0.02 300); transform:rotate(-1deg); box-shadow:4px 4px 0 oklch(0.3 0.02 300 / 0.2); padding:16px; margin-bottom:16px; background-image:repeating-linear-gradient(0deg, transparent, transparent 26px, oklch(0.85 0.03 90) 27px);">
+            <div style="display:flex; gap:6px; height:140px;">
+              <div style="flex:1.3; transform:rotate(-3deg); background:oklch(0.9 0.03 90); overflow:hidden; box-shadow:2px 3px 0 oklch(0.3 0.02 300 / 0.25); z-index:3;">
+                <image-slot id="emirates-img-1" src="uploads/emirates-poster-artwork.jpg" style="width:100%; height:100%;" shape="rect" placeholder="Poster Artwork"></image-slot>
+              </div>
+              <div style="flex:1; transform:rotate(2deg); background:oklch(0.9 0.03 90); overflow:hidden; box-shadow:2px 3px 0 oklch(0.3 0.02 300 / 0.25); z-index:2; margin-top:14px;">
+                <image-slot id="emirates-img-2" src="uploads/emirates-gameshow-still.jpg" style="width:100%; height:100%;" shape="rect" placeholder="Gameshow Still"></image-slot>
+              </div>
+              <div style="flex:1; transform:rotate(-2deg); background:oklch(0.9 0.03 90); overflow:hidden; box-shadow:2px 3px 0 oklch(0.3 0.02 300 / 0.25); z-index:1; margin-top:6px;">
+                <image-slot id="emirates-img-3" src="uploads/emirates-aircraft-retrofit.jpg" style="width:100%; height:100%;" shape="rect" placeholder="Aircraft Retrofit"></image-slot>
+              </div>
+            </div>
+            <div style="font-family:'Work Sans',monospace; font-size:11px; color:oklch(0.35 0.02 60); margin-top:12px;">Campaign stills — DIY Emirates</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ w.isExperience }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size:13px; color:oklch(0.3 0.02 300); margin-bottom:14px;">Experience</div>
+          <div style="font-family:'Work Sans',monospace; font-size:11px; line-height:1.8; color:oklch(0.35 0.02 60); margin-bottom:18px;">{{ w.profile }}</div>
+          <sc-for list="{{ w.jobs }}" as="j" hint-placeholder-count="4">
+            <div style="margin-bottom:16px; padding-bottom:14px; border-bottom:2px dashed oklch(0.8 0.02 300);">
+              <div style="font-size:9.5px; color:oklch(0.3 0.02 300); margin-bottom:4px; line-height:1.5;">{{ j.title }}</div>
+              <div style="font-family:'Work Sans',monospace; font-size:10px; color:oklch(0.5 0.1 30); margin-bottom:8px;">{{ j.dates }}</div>
+              <sc-for list="{{ j.bullets }}" as="b" hint-placeholder-count="2">
+                <div style="font-family:'Work Sans',monospace; font-size:10.5px; line-height:1.7; color:oklch(0.35 0.02 60); margin-bottom:4px; padding-left:14px; position:relative;">
+                  <span style="position:absolute; left:0;">&#9670;</span>{{ b }}
+                </div>
+              </sc-for>
+            </div>
+          </sc-for>
+          <div style="font-size:10px; color:oklch(0.3 0.02 300); margin:18px 0 8px;">Education</div>
+          <sc-for list="{{ w.education }}" as="e" hint-placeholder-count="2">
+            <div style="font-family:'Work Sans',monospace; font-size:10.5px; color:oklch(0.35 0.02 60); margin-bottom:6px;">{{ e }}</div>
+          </sc-for>
+        </sc-if>
+        <sc-if value="{{ w.isSkills }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size:13px; color:oklch(0.3 0.02 300); margin-bottom:14px;">Skills</div>
+          <div style="font-size:10px; color:oklch(0.3 0.02 300); margin-bottom:8px;">Core Skills</div>
+          <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:18px;">
+            <sc-for list="{{ w.core }}" as="c" hint-placeholder-count="6">
+              <div style="font-family:'Work Sans',monospace; font-size:9.5px; padding:5px 10px; background:oklch(0.9 0.06 350); border:2px solid oklch(0.3 0.02 300); color:oklch(0.3 0.02 300);">{{ c }}</div>
+            </sc-for>
+          </div>
+          <div style="font-size:10px; color:oklch(0.3 0.02 300); margin-bottom:8px;">Technical Skills</div>
+          <div style="display:flex; flex-wrap:wrap; gap:6px;">
+            <sc-for list="{{ w.technical }}" as="t" hint-placeholder-count="5">
+              <div style="font-family:'Work Sans',monospace; font-size:9.5px; padding:5px 10px; background:oklch(0.9 0.05 200); border:2px solid oklch(0.3 0.02 300); color:oklch(0.3 0.02 300);">{{ t }}</div>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ w.isLocation }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size:13px; color:oklch(0.3 0.02 300); margin-bottom:14px;">Location</div>
+          <div style="font-family:'Work Sans',monospace; font-size:12px; line-height:1.9; color:oklch(0.35 0.02 60);">Based in London, UK &#8212; available to relocate.</div>
+        </sc-if>
+        <sc-if value="{{ !w.isExperience }}" hint-placeholder-val="{{ true }}">
+          <sc-if value="{{ !w.isSkills }}" hint-placeholder-val="{{ true }}">
+            <sc-if value="{{ !w.isLocation }}" hint-placeholder-val="{{ true }}">
+              <div style="font-family:'Work Sans',monospace; font-size:11px; line-height:1.8; color:oklch(0.35 0.02 60); letter-spacing:0.02em; white-space:pre-line; margin-top:14px;">{{ w.description }}</div>
+            </sc-if>
+          </sc-if>
+        </sc-if>
+        <sc-if value="{{ w.link }}" hint-placeholder-val="{{ false }}">
+          <a href="{{ w.link }}" target="_blank" rel="noopener" style="display:inline-block; margin-top:18px; font-size:9px; color:oklch(0.5 0.1 30); border-bottom:2px solid currentColor; padding-bottom:2px; text-decoration:none;">VIEW PROJECT &#8599;</a>
+        </sc-if>
+      </div>
+    </div>
+  </sc-for>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { booted: false, time: new Date(), mouseX: 0, mouseY: 0, windows: [], zCounter: 10, dragId: null, netThrow: null, isThrowing: false, sketchPage: 0, isMobile: (typeof window !== 'undefined' && window.innerWidth < 760) };
+
+  experienceInfo = {
+    profile: 'Retail and design professional with 3+ years across luxury fashion and retail operations, bringing a sharp eye for detail and aesthetics to in-store visual storytelling. Skilled in Photoshop and Illustrator, translating trend research, brand identity, and sales data into cohesive mood boards, displays, and seasonal presentation standards, with hands-on experience coordinating suppliers and cross-functional teams to deliver on brand and on schedule.',
+    jobs: [
+      { title: 'Operations & Logistics Assistant — Argos', dates: 'Sep 2024 – Feb 2025', bullets: [
+        'Interpreted customer purchasing patterns and sales data to guide merchandising and stock decisions aligned with real-time consumer demand.',
+        'Collaborated with cross-functional teams to improve product presentation, stock availability, and customer experience in a high-volume retail environment.'
+      ] },
+      { title: 'Design & Merchandising Associate — Rimzim Dadu', dates: 'Jan 2022 – Dec 2023', bullets: [
+        'Translated trend research and mood boards into a cohesive concept and display direction for the India Couture Week 2023 collection.',
+        'Supported visual merchandising initiatives, maintaining luxury brand presentation standards across collection launches and showroom touchpoints.',
+        'Coordinated with suppliers, production, and merchandising teams to keep seasonal presentations and product storytelling on schedule.'
+      ] },
+      { title: 'Design Associate — TASVA (Aditya Birla Group × Tarun Tahiliani)', dates: 'Aug 2021 – Aug 2022', bullets: [
+        'Applied WGSN trend forecasting and consumer insight research to shape seasonal design and display direction.',
+        'Presented design concepts and collection direction during internal design reviews, incorporating stakeholder feedback into final presentation standards.'
+      ] },
+      { title: 'Communications & Campaigns Executive — ClickDo', dates: 'Jan 2026 – Jul 2026', bullets: [
+        'Developed brand-aligned creative assets and campaign visuals informed by market trends and audience insight, using Adobe Creative Suite and Canva.'
+      ] }
+    ],
+    education: [
+      'MSc Business, Management & Marketing — Nottingham Trent University, 2023–2024',
+      'Bachelor of Fashion Design — Pearl Academy, 2018–2022'
+    ]
+  };
+
+  skillsInfo = {
+    core: ['Visual Merchandising & Styling', 'Trend & Market Research', 'Mood Boards & Concept Development', 'Brand Standards & Store Presentation', 'Sales & Merchandising Data Interpretation', 'Supplier & Vendor Coordination', 'Cross-Functional Collaboration', 'Photoshop & Illustrator'],
+    technical: ['Adobe Photoshop', 'Adobe Illustrator', 'Microsoft Office', 'WGSN', 'Visual Merchandising Standards', 'Mood Boards & Styling', 'Sales Data Interpretation']
+  };
+
+  projectData = [
+    { id: 'location', title: 'Location', shortTitle: 'Location', kind: 'locationPin', isLocation: true, ...{} },
+    { id: 'experience', title: 'Experience', shortTitle: 'Experience', kind: 'bookKind', isExperience: true, ...{} },
+    { id: 'skills', title: 'Skills', shortTitle: 'Skills', kind: 'star', isSkills: true, ...{} },
+    { id: 'emirates', title: 'DIY Emirates', shortTitle: 'DIY Emirates', kind: 'mega', src: 'uploads/Poster - DIY-2.pdf', placeholder: 'CAMPAIGN ARTWORK', link: 'uploads/Poster - DIY-2.pdf', description: 'A parody gameshow campaign poster for Emirates\' "DIY Dubai" — a $5 billion in-house retrofit of 219 aircraft, reimagined as a home renovation reality show.' },
+    { id: 'marketing-portfolio', title: 'Marketing Portfolio', shortTitle: 'Marketing', kind: 'mag', src: 'uploads/marketing-portfolio-cover.jpg', placeholder: 'CAMPAIGN CONCEPTS', link: 'uploads/Marketing-Portfolio-Japnam-Wason.pdf', description: 'A collection of marketing campaign concepts spanning beauty, sport, fashion, travel and destination experiences — Sephora, Dubai Experience, Emirates, Nike x Dubai Mall, Lacoste x Save Our Species, Clocked Out, and Dubai Islands. Same approach every time: insight, idea, experience, touchpoints, impact.' },
+    { id: 'asva', title: 'Asva — Cultural Studies', shortTitle: 'Asva', kind: 'bookKind', src: 'https://mir-s3-cdn-cf.behance.net/projects/404/0d40db117627107.Y3JvcCwxMTU4LDkwNiwxMDYsMA.jpg', placeholder: 'MOOD & CONCEPT BOARD', link: 'https://www.behance.net/gallery/117627107/Asva-Cultural-studies', description: 'Cultural studies mapping heritage motifs into contemporary silhouette and concept design.' },
+    { id: 'fabdesign', title: 'FabDesign 2020', shortTitle: 'FabDesign', kind: 'fab', src: 'https://mir-s3-cdn-cf.behance.net/projects/404/4f1dba115126597.Y3JvcCwyNTUwLDE5OTQsMCw2NTA.jpg', placeholder: 'TEXTILE COVER', link: 'https://www.behance.net/gallery/115126597/FabDesign2020', description: 'An exploration of resin as a material — testing how it casts, sets and holds texture, and translating that into decor objects and surfaces.' },
+    { id: 'investigate', title: 'Investigate, Innovate, Implement', shortTitle: 'Investigate', kind: 'mag', src: 'https://mir-s3-cdn-cf.behance.net/projects/404/9dd04e116156635.Y3JvcCw0MjE4LDMzMDAsNDM4LDA.jpg', placeholder: 'RESEARCH COVER', link: 'https://www.behance.net/gallery/116156635/InvestigateInnovateImplement', description: 'A design research process from investigation to implementation.' },
+    { id: 'reflective', title: 'Reflective Journal', shortTitle: 'Journal', kind: 'bookKind', src: 'https://mir-s3-cdn-cf.behance.net/projects/404/99cb3b115878525.Y3JvcCwxMDA3LDc4OCwyNDQsMA.jpg', placeholder: 'JOURNAL COVER', link: 'https://www.behance.net/gallery/115878525/Reflective-journal-(Studio-of-construction)', description: 'A reflective studio journal documenting construction and making process.' },
+    { id: 'futures', title: 'Fashion Futures', shortTitle: 'Futures', kind: 'star', src: 'https://mir-s3-cdn-cf.behance.net/projects/404/af46d594012713.Y3JvcCwyNDM0LDE5MDQsMTAzNiwyMjk.jpg', placeholder: 'TREND COVER', link: 'https://www.behance.net/gallery/94012713/fashion-futures', description: 'Trend and concept forecasting for next-season fashion futures.' },
+    { id: 'tasva', title: 'Tasva', shortTitle: 'Tasva', kind: 'shirtKind', src: 'https://mir-s3-cdn-cf.behance.net/projects/404/06a4ca146297781.Y3JvcCwxMzgwLDEwODAsMjcwLDA.jpg', placeholder: 'MENSWEAR COVER', link: 'https://www.behance.net/gallery/146297781/Tasva', description: 'Menswear collection development with TASVA, Aditya Birla Group.' },
+    { id: 'drawing', title: 'Drawing For Design', shortTitle: 'Drawing', kind: 'pencilKind', src: 'https://mir-s3-cdn-cf.behance.net/projects/404/b4e31e89077485.Y3JvcCwxMjAwLDkzOCwwLDMyOQ.jpg', placeholder: 'ILLUSTRATION COVER', link: 'https://www.behance.net/gallery/89077485/Drawing-For-Design', description: 'Fashion illustration studies in line, form and figure.' }
+  ];
+
+  palettes = {
+    trash: { g: '#9a9a9a', d: '#5f5f5f' },
+    sketchbook: { c: '#c97a9c', p: '#fff2c2', y: '#f2c94c', t: '#4a3b3b' },
+    girl: { b: '#a8703f', k: '#3a2a1f', w: '#f3e0c4', h: '#e8607a', c: '#8fc4e8', p: '#f2a6c4' },
+    folderMega: { f: '#f5b8cf', d: '#dd93b3', a: '#fff2c2' },
+    folderBook: { f: '#b8d9f5', d: '#93b8dd', a: '#fff' },
+    folderFabric: { f: '#ffe4a3', d: '#e0bb6a', a: '#f2c94c' },
+    folderMagnify: { f: '#c9b8f5', d: '#a693dd', a: '#fff' },
+    folderShirt: { f: '#b8f5d9', d: '#8adcb3', a: '#7fb6d9' },
+    folderPencil: { f: '#f5d3b8', d: '#dcae83', a: '#4a3b3b' },
+    locationPin: { r: '#e34b4b', d: '#a83232', w: '#ffffff' },
+    folder: { f: '#f2c14e', d: '#d1a03a' }
+  };
+
+  icons = {
+    trash: ['gggggg','g.....g','gdddddg','gd.d.dg','gd.d.dg','gd.d.dg','ggggggg'],
+    sketchbook: ['cccccc.','cppppc.','cp.t.c.','cppppc.','cppppc.','cccccc.','.....yy','......y'],
+    folder: ['.ff...','ffffff','ffffff','ffffff','dddddd'],
+    folderHeart: ['.ff...','ff.a.f','fa.a.f','f.a..f','ffffff','dddddd'],
+    folderBook: ['.ff...','ff.a.f','fa.a.f','fa.a.f','ffffff','dddddd'],
+    folderStar: ['.ff...','ff.a.f','f.aaa.','fa.a.f','ffffff','dddddd'],
+    folderMag: ['.ff...','ffffff','f.aa.f','f.aa.f','ffffff','dddddd'],
+    folderShirt: ['.ff...','ff.a.f','faaaaf','f.a..f','ffffff','dddddd'],
+    folderPencil: ['.ff...','ff...f','f..a.f','f.a..f','ffffff','dddddd'],
+    locationPin: ['..rrr..','.rrrrr.','rrrrrrr','rrwwwrr','rrwwwrr','rrrrrrr','.rrrrr.','..rrr..','...d...']
+  };
+
+  girlSprite = ['.bbb...bbb.','.bbb...bbb.','.ccccccccc.','ppppppppppp','bbbkbbbkbbb','bbbbwwwbbbb','bbbbwkwbbbb','.bbbbbbbbb.','bbbbbbbbbbb','bbwwwwwwwbb','bbw.h.h.wbb','bbwhhhhhwbb','bbw.hhh.wbb','bbw..h..wbb','..bbb.bbb..'];
+
+  sketchData = [
+    { placeholder: 'Project — Business Idea', src: 'https://mir-s3-cdn-cf.behance.net/projects/404/b754b0155185935.Y3JvcCw5MTAsNzEyLDEwMyww.jpg', description: 'Colour and mood exploration for a collection, testing palettes before fabric sourcing.' },
+    { placeholder: 'Project — Feathered Coat', src: 'uploads/Screenshot 2026-07-21 at 23.08.14.jpg', description: 'Concept sketch for a feathered outerwear piece, focused on texture and silhouette.' },
+    { placeholder: 'Project — Tiered Ruffle Skirt', src: 'uploads/Screenshot 2026-07-21 at 23.09.13.jpg', description: 'Design development for a tiered ruffle skirt, exploring volume and layering.', link: 'https://www.instagram.com/japnamwasonn/' }
+  ];
+
+  sketchbookData = [
+    { placeholder: 'Sparkle Wrap Gown', src: 'uploads/Screenshot 2026-07-24 at 00.18.06.jpg', description: 'Digital illustration — draped black wrap gown, rendered against a sparkling red backdrop.' },
+    { placeholder: 'Faux Fur Coat', src: 'uploads/Screenshot 2026-07-24 at 00.18.16.jpg', description: 'Digital illustration — oversized faux fur coat over a printed maxi skirt and knit crop top.' },
+    { placeholder: 'Ruffle Portrait Study', src: 'uploads/Screenshot 2026-07-24 at 00.18.24.jpg', description: 'Digital illustration — watercolour portrait study with an oversized ruffled sleeve.' },
+    { placeholder: 'Pleated Ruffle Dress', src: 'uploads/Screenshot 2026-07-24 at 00.18.34.jpg', description: 'Digital illustration — pleated mini dress with a sculptural ruffled shoulder.' },
+    { placeholder: 'Lace Tights Look', src: 'uploads/Screenshot 2026-07-24 at 00.18.41.jpg', description: 'Digital illustration — corseted mini dress styled with patterned lace tights.' },
+    { placeholder: 'Glitter Trim Gown', src: 'uploads/Screenshot 2026-07-24 at 00.18.49.jpg', description: 'Digital illustration — draped gown with a glittering ribbon trim, hair caught in motion.' },
+    { placeholder: 'Denim Street Style', src: 'uploads/Screenshot 2026-07-24 at 00.19.00.jpg', description: 'Digital illustration — casual street style look in denim and a puff-sleeve blouse.' }
+  ];
+
+  componentDidMount() {
+    this.setState({ booted: false });
+    this.bootTimer = setTimeout(() => { this.setState({ booted: true }); this.beep(660, 0.08); }, 2400);
+    this.clockTimer = setInterval(() => this.setState({ time: new Date() }), 1000 * 15);
+    this.handleMove = (e) => {
+      if (this.state.dragId == null) return;
+      const dx = e.clientX - this.dragStartX;
+      const dy = e.clientY - this.dragStartY;
+      this.setState(s => ({ windows: s.windows.map(w => w.id === s.dragId ? { ...w, x: this.dragOrigX + dx, y: Math.max(34, this.dragOrigY + dy) } : w) }));
+    };
+    this.handleUp = () => { if (this.state.dragId != null) this.setState({ dragId: null }); };
+    window.addEventListener('mousemove', this.handleMove);
+    window.addEventListener('mouseup', this.handleUp);
+    this.handleResize = () => this.setState({ isMobile: window.innerWidth < 760 });
+    window.addEventListener('resize', this.handleResize);
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.bootTimer);
+    clearInterval(this.clockTimer);
+    window.removeEventListener('mousemove', this.handleMove);
+    window.removeEventListener('mouseup', this.handleUp);
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  beep(freq, dur) {
+    try {
+      const ctx = this._audioCtx || (this._audioCtx = new (window.AudioContext || window.webkitAudioContext)());
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'square';
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0.05, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur);
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.start(); osc.stop(ctx.currentTime + dur);
+    } catch (e) {}
+  }
+
+  pixelArt(rows, palette, px) {
+    const shadows = [];
+    rows.forEach((row, y) => {
+      [...row].forEach((ch, x) => {
+        if (ch !== '.' && ch !== ' ') shadows.push(`${x * px}px ${y * px}px 0 ${palette[ch] || '#000'}`);
+      });
+    });
+    const width = Math.max(...rows.map(r => r.length)) * px;
+    const height = rows.length * px;
+    return { style: `width:${px}px; height:${px}px; box-shadow:${shadows.join(',')};`, outer: `position:relative; width:${width}px; height:${height}px;` };
+  }
+
+  onMouseMove = (e) => this.setState({ mouseX: e.clientX, mouseY: e.clientY });
+
+  throwNetAt = (e, onOpen) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const targetX = rect.left + rect.width / 2;
+    const targetY = rect.top + rect.height / 2;
+    const charX = window.innerWidth / 2;
+    const charY = window.innerHeight - 210;
+    this.beep(520, 0.05);
+    this.setState({ isThrowing: true, netThrow: { x: charX, y: charY, targetX, targetY, phase: 'start' } });
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      this.setState(s => ({ netThrow: s.netThrow ? { ...s.netThrow, phase: 'end' } : null }));
+    }));
+    setTimeout(() => { this.setState({ netThrow: null, isThrowing: false }); onOpen(); }, 550);
+  };
+
+  openWindow = (id, data) => {
+    this.beep(440, 0.06);
+    this.setState(s => {
+      if (s.windows.some(w => w.id === id)) {
+        const nz = s.zCounter + 1;
+        return { windows: s.windows.map(w => w.id === id ? { ...w, z: nz } : w), zCounter: nz };
+      }
+      const nz = s.zCounter + 1;
+      const offset = s.windows.length * 24;
+      return {
+        windows: [...s.windows, { id, x: 260 + offset, y: 90 + offset, z: nz, ...data }],
+        zCounter: nz
+      };
+    });
+  };
+
+  nextSketchPage = () => { this.beep(500, 0.04); this.setState(s => ({ sketchPage: (s.sketchPage + 1) % this.sketchbookData.length })); };
+  prevSketchPage = () => { this.beep(400, 0.04); this.setState(s => ({ sketchPage: (s.sketchPage - 1 + this.sketchbookData.length) % this.sketchbookData.length })); };
+
+  closeWindow = (id) => {
+    this.beep(220, 0.05);
+    this.setState(s => ({ windows: s.windows.filter(w => w.id !== id) }));
+  };
+
+  startDrag = (id, e) => {
+    const w = this.state.windows.find(w => w.id === id);
+    if (!w) return;
+    this.dragStartX = e.clientX; this.dragStartY = e.clientY;
+    this.dragOrigX = w.x; this.dragOrigY = w.y;
+    const nz = this.state.zCounter + 1;
+    this.setState({ dragId: id, zCounter: nz, windows: this.state.windows.map(win => win.id === id ? { ...win, z: nz } : win) });
+  };
+
+  renderVals() {
+    const clockLabel = this.state.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+    const clouds = [0, 1, 2, 3].map(i => ({
+      style: `position:absolute; top:${10 + i * 15}%; left:0; width:${120 + i * 20}px; height:${40 + i * 6}px; background:oklch(0.98 0.005 90 / 0.8); border-radius:999px; box-shadow: ${30 + i * 4}px -10px 0 -6px oklch(0.98 0.005 90 / 0.8), -30px 6px 0 -10px oklch(0.98 0.005 90 / 0.8); animation:drift ${28 + i * 9}s linear infinite; animation-delay:-${i * 6}s; z-index:2;`
+    }));
+
+    const kindMap = {
+      mega: { icon: 'folderHeart', palette: 'folderMega' },
+      bookKind: { icon: 'folderBook', palette: 'folderBook' },
+      fab: { icon: 'folder', palette: 'folderFabric' },
+      mag: { icon: 'folderMag', palette: 'folderMagnify' },
+      star: { icon: 'folderStar', palette: 'folderMagnify' },
+      shirtKind: { icon: 'folderShirt', palette: 'folderShirt' },
+      pencilKind: { icon: 'folderPencil', palette: 'folderPencil' },
+      locationPin: { icon: 'locationPin', palette: 'locationPin' }
+    };
+    const projects = this.projectData.map(p => {
+      const map = kindMap[p.kind] || { icon: 'folder', palette: 'folder' };
+      const px = p.kind === 'locationPin' ? 5 : 7;
+      const art = this.pixelArt(this.icons[map.icon], this.palettes[map.palette], px);
+      return {
+        ...p,
+        iconStyle: art.style,
+        iconOuterStyle: art.outer,
+        onOpenWithNet: (e) => this.throwNetAt(e, () => this.openWindow(p.id, { ...p, ...(p.isExperience ? this.experienceInfo : {}), ...(p.isSkills ? this.skillsInfo : {}), imgId: `win-${p.id}`, isEmirates: p.id === 'emirates', hasImage: p.id !== 'emirates' && !p.isExperience && !p.isSkills && !p.isLocation }))
+      };
+    });
+
+    const girlArt = this.pixelArt(this.girlSprite, this.palettes.girl, 6);
+
+    const dockItems = [
+      { glyph: '👤', label: 'About', bubbleColor: 'oklch(0.88 0.07 350)', onOpen: () => this.openWindow('about', { title: 'About Japnam', src: 'uploads/Screenshot 2026-07-21 at 23.11.15.jpg', placeholder: 'PORTRAIT', description: 'Fashion designer & marketer working across couture, retail and campaign design. MSc Business, Management & Marketing; 3+ years across luxury fashion and brand storytelling.', link: '', imgId: 'win-about', isRound: true }) },
+      { glyph: '✉', label: 'Connect', bubbleColor: 'oklch(0.88 0.06 300)', onOpen: () => this.openWindow('contact', { title: "Let's Connect", src: 'uploads/Screenshot 2026-07-21 at 23.11.15.jpg', placeholder: 'PORTRAIT', description: 'japnamwason@gmail.com\n+91 99998 22153\nInstagram — @japnamwasonn\nBehance — /japnamwason\nDelhi, India', link: 'mailto:japnamwason@gmail.com', imgId: 'win-contact', isRound: true }) },
+      { glyph: '✏', label: 'Sketches', bubbleColor: 'oklch(0.88 0.06 200)', onOpen: () => this.openWindow('sketchbook', { title: 'My Sketchbook', isSketchbook: true, hasImage: false, link: 'https://www.instagram.com/japnamwasonn/' }) }
+    ];
+
+    const sketches = this.sketchData.map((s, i) => ({ ...s, id: `sketch-${i}` }));
+    const sketchbookArt = this.pixelArt(this.icons.sketchbook, this.palettes.sketchbook, 6);
+    const currentSketch = this.sketchbookData[this.state.sketchPage];
+    const sketchbookPage = { ...currentSketch, id: `sketchbook-page-${this.state.sketchPage}`, pageLabel: `Pg ${this.state.sketchPage + 1} of ${this.sketchbookData.length}` };
+    const folderArt = this.pixelArt(this.icons.folder, this.palettes.folder, 6);
+    const illustrationFolders = this.sketchData.map((s, i) => ({
+      label: s.placeholder.replace('Project — ', ''),
+      iconStyle: folderArt.style,
+      iconOuterStyle: folderArt.outer,
+      onOpen: () => this.openWindow(`illustration-${i}`, { title: s.placeholder, src: s.src, placeholder: s.placeholder, description: s.description, link: s.link || 'https://www.behance.net/', isIllustration: true, imgId: `illus-win-${i}` })
+    }));
+
+    const openWindows = this.state.windows.map(w => ({
+      ...w,
+      hasImage: w.hasImage !== false && !w.isSketches && !w.isSketchbook,
+      showHeading: !w.isIllustration && !w.isExperience && !w.isSkills && !w.isLocation,
+      showPlainImage: w.hasImage !== false && !w.isSketches && !w.isSketchbook && !w.isIllustration && !w.isRound,
+      showLinkedImage: w.hasImage !== false && !w.isSketches && !w.isSketchbook && !!w.isIllustration,
+      showRoundImage: w.hasImage !== false && !w.isSketches && !w.isSketchbook && !!w.isRound,
+      windowStyle: this.state.isMobile
+        ? `position:fixed; left:8px; right:8px; top:52px; bottom:96px; width:auto; height:auto; display:flex; flex-direction:column; background:oklch(0.98 0.01 90); border:2px solid oklch(0.3 0.02 300); box-shadow:6px 6px 0 oklch(0.3 0.02 300 / 0.35); z-index:${w.z}; cursor:default;`
+        : `position:absolute; left:${w.x}px; top:${w.y}px; width:420px; height:480px; display:flex; flex-direction:column; background:oklch(0.98 0.01 90); border:2px solid oklch(0.3 0.02 300); box-shadow:6px 6px 0 oklch(0.3 0.02 300 / 0.35); z-index:${w.z}; cursor:default;`,
+      onDragStart: (e) => { if (!this.state.isMobile) this.startDrag(w.id, e); },
+      onClose: () => this.closeWindow(w.id)
+    }));
+
+    const nt = this.state.netThrow;
+    const netThrowStyle = nt ? `position:fixed; left:${nt.phase === 'end' ? nt.targetX : nt.x}px; top:${nt.phase === 'end' ? nt.targetY : nt.y}px; width:16px; height:16px; margin:-8px; border-radius:50%; background:transparent; box-shadow:0 0 0 3px #cfd8dc, 3px 3px 0 3px #cfd8dc; transition:left 0.4s cubic-bezier(.3,.6,.4,1), top 0.4s cubic-bezier(.3,.6,.4,1); z-index:900; pointer-events:none;` : '';
+
+    const characterWrapStyle = `position:absolute; bottom:170px; left:50%; z-index:12; animation:${this.state.isThrowing ? 'none' : 'walk 8s ease-in-out infinite'};`;
+
+    const cursorSize = 22;
+    const cursorStyle = this.state.isMobile ? 'display:none;' : `position:fixed; left:0; top:0; width:${cursorSize}px; height:${cursorSize * 1.2}px; background:#fff; clip-path:polygon(0 0, 0 100%, 27% 70%, 44% 98%, 60% 90%, 42% 60%, 100% 60%); filter:drop-shadow(1px 0 0 oklch(0.2 0.02 300)) drop-shadow(-1px 0 0 oklch(0.2 0.02 300)) drop-shadow(0 1px 0 oklch(0.2 0.02 300)) drop-shadow(0 -1px 0 oklch(0.2 0.02 300)); pointer-events:none; z-index:1000; transform:translate(${this.state.mouseX}px, ${this.state.mouseY}px);`;
+
+    return {
+      booted: this.state.booted,
+      clockLabel,
+      clouds,
+      projects,
+      girlStyle: girlArt.style,
+      girlOuterStyle: girlArt.outer,
+      dockItems,
+      openWindows,
+      sketches,
+      illustrationFolders,
+      sketchbookIconStyle: sketchbookArt.style,
+      sketchbookIconOuterStyle: sketchbookArt.outer,
+      sketchbookPage,
+      onNextSketchPage: this.nextSketchPage,
+      onPrevSketchPage: this.prevSketchPage,
+      onOpenSketchbook: () => this.openWindow('sketchbook', { title: 'My Sketchbook', isSketchbook: true, hasImage: false, link: 'https://www.instagram.com/japnamwasonn/' }),
+      netThrow: !!nt,
+      netThrowStyle,
+      characterWrapStyle,
+      onMouseMove: this.onMouseMove,
+      cursorStyle,
+    };
+  }
+}
+
+</script>
+</body>
+</html>
